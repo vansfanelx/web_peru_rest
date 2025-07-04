@@ -1,0 +1,136 @@
+.promo-cards {
+  padding: 80px 0;
+  background-color: var(--light-gray);
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 30px;
+  height: 600px;
+}
+
+.promo-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--dark-brown);
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.promo-card-large {
+  grid-row: span 2;
+}
+
+.promo-card-medium {
+  grid-row: span 1;
+}
+
+.promo-card-content {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+  color: white;
+}
+
+.promo-subtitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.promo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  line-height: 1.1;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+  max-width: 200px;
+}
+
+.promo-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.promo-card-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+}
+
+.promo-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.promo-card:hover .promo-card-image img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .promo-grid {
+    height: 500px;
+  }
+  
+  .promo-title {
+    font-size: 28px;
+  }
+  
+  .promo-card-content {
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-cards {
+    padding: 40px 0;
+  }
+  
+  .promo-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 200px);
+    height: auto;
+    gap: 20px;
+  }
+  
+  .promo-card-large,
+  .promo-card-medium {
+    grid-row: span 1;
+  }
+  
+  .promo-title {
+    font-size: 24px;
+    max-width: 150px;
+  }
+  
+  .promo-card-content {
+    top: 15px;
+    left: 15px;
+  }
+}

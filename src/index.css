@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Montserrat:wght@400;500;600;700&family=Alfa+Slab+One:wght@400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-orange: #eeb240;
+  --light-orange: #f0d098;
+  --dark-brown: #34271f;
+  --red-accent: #a84926;
+  --light-gray: #fbfafa;
+  --medium-gray: #9f9a95;
+  --light-brown: #d6a991;
+  --neutral-gray: #c9cbcd;
+  --teal-accent: #3dac8c;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: var(--dark-brown);
+  background-color: var(--light-gray);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--dark-brown);
+}
+
+.logo-text {
+  font-family: 'Alfa Slab One', serif;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--red-accent);
+  color: white;
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #8a3a1e;
+  transform: translateY(-2px);
+}
+
+.section-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--dark-brown);
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--primary-orange);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.gradient-bg {
+  background-image: url(./assets/components/img/bg.png);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
