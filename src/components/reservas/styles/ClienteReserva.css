@@ -1,0 +1,38 @@
+/* Estilos base para el flujo de reservas de cliente */
+.cliente-reserva {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+  padding: 32px 24px;
+}
+.cliente-reserva h2, .cliente-reserva h3 {
+  color: #2563eb;
+  margin-bottom: 18px;
+}
+.cliente-reserva .form-group {
+  margin-bottom: 18px;
+}
+.cliente-reserva input, .cliente-reserva textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  margin-top: 4px;
+}
+.cliente-reserva button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cliente-reserva button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}

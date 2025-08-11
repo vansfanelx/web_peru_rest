@@ -1,4 +1,4 @@
-import './MenuSection.css';
+import './../assets/MenuSection.css';
 
 const MenuSection = () => {
   const menuItems = [

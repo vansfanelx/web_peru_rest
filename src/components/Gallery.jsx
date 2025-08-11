@@ -1,4 +1,4 @@
-import './Gallery.css';
+import './../assets/Gallery.css';
 
 const Gallery = () => {
   const galleryImages = [

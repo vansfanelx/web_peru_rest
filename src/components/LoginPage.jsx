@@ -1,31 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'; 
-import './LoginPage.css';
+import './../assets/LoginPage.css';
 import { Link } from 'react-router-dom';
-import SideImage from '../assets/components/img/caralsan.jpg'
-import Logo from '../assets/components/img/CaralLogo.png'
+import SideImage from './../assets/img/caralsan.jpg'
+import Logo from './../assets/img/CaralLogo.png'
+
+import { login } from '../api/api';
+
 
 function LoginPage() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos de inicio de sesión
-    // Por ahora, solo simularemos un inicio de sesión exitoso y navegaremos a otra página.
-    console.log('Intentando iniciar sesión...');
-    // Por ejemplo, navegar a un dashboard después del login
-    // navigate('/dashboard');
-    alert('¡Inicio de sesión!'); // Solo para demostración
+    setError('');
+    try {
+      // El API espera { email, password }
+      const data = await login(email, password);
+      if (data && data.token && data.usuario) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('usuario', JSON.stringify(data.usuario));
+        navigate('/ReservaWeb'); // Redirige a la vista de reservas
+      } else {
+        setError(data?.message || 'Error al iniciar sesión');
+      }
+    } catch (err) {
+      setError('Error de conexión o credenciales incorrectas');
+    }
   };
 
   const handleRegister = () => {
-    // Lógica para navegar a la página de registro
-    navigate('/Register'); // Asume que tienes una ruta /registro
+    navigate('/Register');
   };
 
   const handleForgotPassword = () => {
-    // Lógica para navegar a la página de recuperación de contraseña
-    navigate('/UserRecovery'); // Asume que tienes una ruta /recuperar-contrasena
+    navigate('/UserRecovery');
   };
 
   return (
@@ -46,19 +58,25 @@ function LoginPage() {
 
         <p className="access-data-text">Ingrese sus datos de acceso</p>
 
+
         <form onSubmit={handleLogin} className="login-form">
           <input
             type="email"
             placeholder="Correo"
             className="login-input"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
           />
           <input
             type="password"
             placeholder="Contraseña"
             className="login-input"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             required
           />
+          {error && <div style={{ color: 'red', marginBottom: 8 }}>{error}</div>}
           <button type="submit" className="login-button">
             Iniciar Sesión
           </button>

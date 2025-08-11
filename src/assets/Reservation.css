@@ -1,7 +1,7 @@
 .reservation {
   padding: 80px 0;
   background-color: var(--light-gray);
-  position: relative;
+  /* Eliminado. El flujo de reservas ahora está en src/components/reservas/styles/ClienteReserva.css */
   overflow: hidden;
 }
 

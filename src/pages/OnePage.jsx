@@ -1,20 +1,16 @@
 import React from 'react'
-import Header from '../assets/components/Header'
-import Hero from '../assets/components/Hero'
-import MenuSection from '../assets/components/MenuSection'
-import Gallery from '../assets/components/Gallery'
-import Footer from '../assets/components/Footer'
-import PromoCards from '../assets/components/PromoCards'
+import Hero from '../components/Hero'
+import MenuSection from '../components/MenuSection'
+import Gallery from '../components/Gallery'
+import PromoCards from '../components/PromoCards'
 
 function OnePage() {
   return (
     <>
-      <Header />
       <Hero />
       <MenuSection />
       <PromoCards />
       <Gallery />
-      <Footer />
     </>
   )
 }

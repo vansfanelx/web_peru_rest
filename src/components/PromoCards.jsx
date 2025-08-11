@@ -1,4 +1,4 @@
-import './PromoCards.css';
+import './../assets/PromoCards.css';
 
 const PromoCards = () => {
   const promoItems = [

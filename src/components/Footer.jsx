@@ -1,5 +1,5 @@
-import './Footer.css';
-import LogoBlanco from './img/CaralLogoBlanco.png'
+import '../assets/Footer.css';
+import LogoBlanco from '../assets/img/CaralLogoBlanco.png';
 
 const Footer = () => {
   return (

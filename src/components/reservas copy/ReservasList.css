@@ -1,0 +1,347 @@
+/* Estilos generales para la tabla de reservas */
+.reservas-list {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+}
+
+.reservas-list-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reservas-list th,
+.reservas-list td {
+  padding: 0.85rem 0.5rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.reservas-list th {
+  background: #f8fafc;
+}
+
+.reservas-list-table th {
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid #e5e7eb;
+  color: #374151;
+}
+
+.reservas-list td {
+  font-size: 1rem;
+  color: #222;
+  background: #fff;
+}
+
+.reservas-list-table td {
+  background: #fff;
+}
+
+.reservas-list tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.reservas-list tbody tr:hover {
+  background: #f3f4f6;
+}
+
+.reservas-list td:last-child {
+  text-align: center;
+}
+
+.reservasList-modernBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #e0e7ff 0%, #f3f4f6 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 0;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  transition: all 0.2s;
+}
+
+.reservasList-modernBtn:hover {
+  background: linear-gradient(90deg, #dbeafe 0%, #e0e7ff 100%);
+  color: #1e40af;
+}
+
+.reservasList-modernBtn:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  border-color: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.reservas-list td > .reservasList-modernBtn,
+.reservas-list-table td > .reservasList-modernBtn {
+  margin: 0 4px;
+}
+
+.reservas-list td > div,
+.reservas-list-table td > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reservas-list td > div:first-child,
+.reservas-list-table td > div:first-child {
+  white-space: normal; /* Permitir wrap para el nombre principal */
+}
+
+.reservas-list td > div:not(:first-child),
+.reservas-list-table td > div:not(:first-child) {
+  white-space: nowrap;
+  max-width: 180px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reservas-list {
+    padding: 0;
+  }
+  .reservas-list-table th,
+  .reservas-list-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  .reservas-list h3 {
+    font-size: 1.1rem;
+  }
+  .reservas-list-table button {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservas-list {
+    padding: 0.75rem;
+  }
+  .reservas-list-table,
+  .reservas-list-table thead,
+  .reservas-list-table tbody,
+  .reservas-list-table th,
+  .reservas-list-table td,
+  .reservas-list-table tr {
+    display: block;
+  }
+  .reservas-list-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .reservas-list-table tr {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #fff;
+  }
+  .reservas-list-table td {
+    border: none !important;
+    padding: 0.25rem 0 !important;
+    position: relative;
+    padding-left: 50% !important;
+  }
+  .reservas-list-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #666;
+  }
+}
+
+/* Estilos para Modal de Confirmación */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-form {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: modalSlideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Estructura del Modal */
+.modal-header {
+  padding: 1.5rem 2rem 1rem 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.modal-body {
+  padding: 1.5rem 2rem;
+  flex-grow: 1;
+}
+
+.modal-footer {
+  padding: 1rem 2rem 1.5rem 2rem;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.modal-title {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Estilos para los detalles de la reserva */
+.reserva-details {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #374151;
+  min-width: 70px;
+}
+
+.detail-value {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.warning-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+  padding: 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.warning-icon {
+  font-size: 16px;
+}
+
+/* Ajustar estilos existentes */
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0; /* Removido margen ya que está en el footer */
+}
+
+.btn-modal-cancel {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-cancel:hover {
+  background: #e5e7eb;
+}
+
+.btn-modal-cancel:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+.btn-modal-delete {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-delete:hover {
+  background: #c0392b;
+}
+
+.btn-modal-delete:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}

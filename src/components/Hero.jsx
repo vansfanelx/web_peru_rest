@@ -1,5 +1,5 @@
-import './Hero.css';
-import Hamburguesa from './img/a1.png'
+import './../assets/Hero.css';
+import Hamburguesa from './../assets/img/a1.png'
 
 const Hero = () => {
   return (
