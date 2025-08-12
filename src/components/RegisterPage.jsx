@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../assets/LoginPage.css';
 import SideImage from '../assets/img/caralsan.jpg';
 import Logo from '../assets/img/CaralLogo.png';
-// import { register } from '../api/api';
+import { register } from '../api/api';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -21,15 +21,15 @@ function RegisterPage() {
     setError('');
     setSuccess('');
     try {
-      // const data = await register({ name, email, telefono: phone, password });
-      // if (data && data.token) {
-      //   localStorage.setItem('token', data.token);
-      //   localStorage.setItem('usuario', JSON.stringify(data.usuario || data.user || {}));
-      //   setSuccess('¡Registro exitoso! Redirigiendo...');
-      //   setTimeout(() => navigate('/reserva-cliente'), 1200);
-      // } else {
-      //   setError(data?.message || 'No se pudo registrar.');
-      // }
+      const data = await register({ name, email, telefono: phone, password });
+      if (data && data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('usuario', JSON.stringify(data.usuario || data.user || {}));
+        setSuccess('¡Registro exitoso! Redirigiendo...');
+        setTimeout(() => navigate('/reserva-cliente'), 1200);
+      } else {
+        setError(data?.message || 'No se pudo registrar.');
+      }
     } catch (err) {
       setError('Error de conexión');
     } finally {

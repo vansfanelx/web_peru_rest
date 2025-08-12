@@ -35,22 +35,20 @@ const ReservaClienteForm = () => {
   // Cargar solo reservas del usuario autenticado (ruta clientes)
   useEffect(() => {
     let cancelado = false;
-    if (user && token) {
-      getMisReservas()
-        .then(data => { if (!cancelado) setReservas(data); })
-        .catch(err => {
-          if (!cancelado) {
-            setReservas([]);
-            // Opcional: mostrar error solo una vez
-            if (err.message && !window.__misReservasErrorMostrado) {
-              window.__misReservasErrorMostrado = true;
-              alert('No se pudo obtener tus reservas. Verifica tu conexión o sesión.');
-            }
-          }
-        });
-    }
+    setError('');
+    setLoading(true);
+    getMisReservas()
+      .then(data => {
+        if (!cancelado) setReservas(data);
+      })
+      .catch(err => {
+        if (!cancelado) setError('No se pudo obtener tus reservas. Verifica tu conexión o sesión.');
+      })
+      .finally(() => {
+        if (!cancelado) setLoading(false);
+      });
     return () => { cancelado = true; };
-  }, [user, token]);
+  }, []); // Solo al montar
 
   // Buscar mesas libres
   const buscarMesas = async () => {

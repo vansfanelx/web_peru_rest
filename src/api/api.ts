@@ -1,7 +1,7 @@
 
 /// <reference types="vite/client" />
 // Centraliza todas las llamadas a la API (login, salones, etc)
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/web';
 
 // Debug: Mostrar la URL de la API
 console.log('🌐 API_URL configurada:', API_URL);
@@ -23,7 +23,7 @@ export async function getMesasDisponibles(params: {
   numero_personas?: number;
 }) {
   if (!isTokenValid()) return;
-  const res = await fetch(`${API_URL}/web/reservas/mesas-disponibles`, {
+  const res = await fetch(`${API_URL}/reservas/mesas-disponibles`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(params),
@@ -41,7 +41,7 @@ export async function getMesasDisponibles(params: {
 // --- LOGIN ---
 // El API espera { email, password }
 export async function login(email: string, password: string) {
-  const response = await fetch(`${API_URL}/web/login`, {
+  const response = await fetch(`${API_URL}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -60,6 +60,17 @@ export async function logout() {
   }
   localStorage.removeItem('token');
   localStorage.removeItem('usuario');
+}
+
+// --- REGISTRO ---
+// El API espera { name, email, telefono, password }
+export async function register(userData: { name: string; email: string; telefono: string; password: string }) {
+  const response = await fetch(`${API_URL}/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData),
+  });
+  return response.json();
 }
 
 
@@ -803,7 +814,7 @@ export async function cambiarEstadoReserva(id: number | string, estado: string, 
 // Obtener reservas del cliente autenticado (token de cliente)
 export async function getMisReservas() {
   if (!isTokenValid()) throw new Error('No autenticado');
-  const res = await fetch(`${API_URL}/web/mis-reservas`, {
+  const res = await fetch(`${API_URL}/mis-reservas`, {
     headers: getAuthHeaders(),
   });
   if (!res.ok) {
