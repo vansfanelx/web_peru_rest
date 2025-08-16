@@ -1,4 +1,3 @@
-
 /// <reference types="vite/client" />
 // Centraliza todas las llamadas a la API (login, salones, etc)
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/web';
@@ -23,13 +22,17 @@ export async function getMesasDisponibles(params: {
   numero_personas?: number;
 }) {
   if (!isTokenValid()) return;
-  const res = await fetch(`${API_URL}/reservas/mesas-disponibles`, {
+  // Corregir la URL del endpoint para que coincida con la disponible en el servidor
+  const res = await fetch(`${API_URL}/mesas-disponibles`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(params),
   });
   if (res.status === 401) throw new Error('unauthorized');
-  if (!res.ok) throw new Error('Error al consultar mesas disponibles');
+  if (!res.ok) {
+    console.error(`Error al consultar mesas disponibles: ${res.status} ${res.statusText}`);
+    throw new Error(`Error al consultar mesas disponibles (${res.status})`);
+  }
   const responseData = await res.json();
   if (responseData && responseData.success && responseData.data) {
     return responseData.data;
